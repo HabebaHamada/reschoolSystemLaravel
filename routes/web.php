@@ -4,20 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AuthenticatedUserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register', [UserController::class, 'create'])->name('register');
-Route::post('register', [UserController::class, 'store']);
+Route::get('register', [RegistrationController::class, 'create'])->name('register');
+Route::post('register', [RegistrationController::class, 'store']);
 Route::get('login', [AuthenticatedUserController::class, 'create'])->name('login');
-Route::post('login', [AuthenticatedUserController::class, 'store']);
+Route::post('login', [AuthenticatedUserController::class, 'authenticate']);
 
 
-Route::middleware(['Auth','Active'])->group(function () {
+Route::middleware(['auth','active'])->group(function () {
    
 Route::prefix('school-classes')->group(function () {
     Route::get('/', [SchoolClassController::class, 'index'])->name('school-classes.index');

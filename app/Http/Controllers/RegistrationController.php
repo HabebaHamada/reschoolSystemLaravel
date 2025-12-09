@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
-Class UserController extends Controller
+Class RegistrationController extends Controller
 {
     public function create()
     {
@@ -28,6 +29,8 @@ Class UserController extends Controller
             'password' => Hash::make($validatedData['password']),
             'active' => 1, // Set default active status to true
         ]);
+
+        Auth::login($user);
 
         return redirect()->route('school-classes.index')->with('success', 'Registration successful');
     }
