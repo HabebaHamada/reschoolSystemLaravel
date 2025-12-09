@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Repositories;
+
 use App\Models\SchoolClass;
 use Illuminate\Database\Eloquent\Collection;
 
