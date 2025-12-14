@@ -36,9 +36,9 @@ class UpdateStudentAge extends Command
 
         foreach ($students as $student) {
             try {
-                $dob = Carbon::parse($student->date_of_birth);
+                $dateOfBirth = Carbon::parse($student->date_of_birth);
 
-                $age = $dob->diffInYears($now);
+                $age = $dateOfBirth->diffInYears($now);
 
                 if (!isset($student->age) || $student->age != $age) {
 
